@@ -1,0 +1,535 @@
+setwd("/Users/zerohertz/MATLAB/Obstructive Sleep Apnea/")
+sle=read.table("multi_sleep.csv",header=T)
+sle=read.csv("multi_sleep.csv",header=T)
+wak=read.csv("multi_wake.csv",header=T)
+sk=function(x,Winsiz){#
+	i=0#
+	sk=0#
+	while(i<floor(length(x)/Winsiz)){#
+		j=1#
+		sam=0#
+		while(j<=Winsiz){#
+			sam[j]=x[i*Winsiz+j]#
+			j=j+1#
+		}#
+		sk[i+1]<-sum(((sam-mean(sam))^3)/sd(sam)^3)*(1/(Winsiz-1))#
+		i=i+1#
+	}#
+	return(sk)#
+}#
+ku=function(x,Winsiz){#
+	i=0#
+	ku=0#
+	while(i<floor(length(x)/Winsiz)){#
+		j=1#
+		sam=0#
+		while(j<=Winsiz){#
+			sam[j]=x[i*Winsiz+j]#
+			j=j+1#
+		}#
+		ku[i+1]<-sum(((sam-mean(sam))^4)/sd(sam)^4)*(1/(Winsiz-1))#
+		i=i+1#
+	}#
+	return(ku)#
+}#
+rm=function(x,Winsiz){#
+	i=0#
+	rm=0#
+	while(i<floor(length(x)/Winsiz)){#
+		j=1#
+		sam=0#
+		while(j<=Winsiz){#
+			sam[j]=x[i*Winsiz+j]#
+			j=j+1#
+		}#
+		rm[i+1]<-sqrt(sum(sam^2)/Winsiz)#
+		i=i+1#
+	}#
+	return(rm)#
+}#
+p2p=function(x,Winsiz){#
+  i=0#
+  pp=0#
+  while(i<floor(length(x)/Winsiz)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i*Winsiz+j]#
+      j=j+1#
+    }#
+    pp[i+1]<-max(sam)-min(sam)#
+    i=i+1#
+  }#
+  return(pp)#
+}#
+iq=function(x,Winsiz){#
+  i=0#
+  qq=0#
+  while(i<floor(length(x)/Winsiz)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i*Winsiz+j]#
+      j=j+1#
+    }#
+    qq[i+1]<-IQR(sam)#
+    i=i+1#
+  }#
+  return(qq)#
+}#
+cf=function(x,Winsiz){#
+  i=0#
+  cc=0#
+  while(i<floor(length(x)/Winsiz)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i*Winsiz+j]#
+      j=j+1#
+    }#
+    cc[i+1]<-(max(sam)-min(sam))/(sqrt(sum(sam^2)/Winsiz))#
+    i=i+1#
+  }#
+  return(cc)#
+}
+sk=function(x,Winsiz){#
+  i=0#
+  sk=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    sk[i+1]<-sum(((sam-mean(sam))^3)/sd(sam)^3)*(1/(Winsiz-1))#
+    i=i+1#
+  }#
+  return(sk)#
+}#
+ku=function(x,Winsiz){#
+  i=0#
+  ku=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    ku[i+1]<-sum(((sam-mean(sam))^4)/sd(sam)^4)*(1/(Winsiz-1))#
+    i=i+1#
+  }#
+  return(ku)#
+}#
+rm=function(x,Winsiz){#
+  i=0#
+  rm=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    rm[i+1]<-sqrt(sum(sam^2)/Winsiz)#
+    i=i+1#
+  }#
+  return(rm)#
+}#
+p2p=function(x,Winsiz){#
+  i=0#
+  pp=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    pp[i+1]<-max(sam)-min(sam)#
+    i=i+1#
+  }#
+  return(pp)#
+}#
+iq=function(x,Winsiz){#
+  i=0#
+  qq=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    qq[i+1]<-IQR(sam)#
+    i=i+1#
+  }#
+  return(qq)#
+}#
+cf=function(x,Winsiz){#
+  i=0#
+  cc=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    cc[i+1]<-(max(sam)-min(sam))/(sqrt(sum(sam^2)/Winsiz))#
+    i=i+1#
+  }#
+  return(cc)#
+}
+MakeData=function(data,Winsiz,name){#
+	X_skew=sk(data$X,Winsiz)#
+	X_kurt=ku(data$X,Winsiz)#
+	X_rms=rm(data$X,Winsiz)#
+	X_p2p=p2p(data$X,Winsiz)#
+  	X_iq=iq(data$X,Winsiz)#
+  	X_cf=cf(data$X,Winsiz)#
+	Y_skew=sk(data$Y,Winsiz)#
+	Y_kurt=ku(data$Y,Winsiz)#
+	Y_rms=rm(data$Y,Winsiz)#
+	Y_p2p=p2p(data$Y,Winsiz)#
+	Y_iq=iq(data$Y,Winsiz)#
+ 	Y_cf=cf(data$Y,Winsiz)#
+	Z_skew=sk(data$Z,Winsiz)#
+	Z_kurt=ku(data$Z,Winsiz)#
+	Z_rms=rm(data$Z,Winsiz)#
+	Z_p2p=p2p(data$Z,Winsiz)#
+	Z_iq=iq(data$Z,Winsiz)#
+	Z_cf=cf(data$Z,Winsiz)#
+	all=cbind(X_skew,X_kurt,X_rms,X_p2p,X_iq,X_cf,Y_skew,Y_kurt,Y_rms,Y_p2p,Y_iq,Y_cf,Z_skew,Z_kurt,Z_rms,Z_p2p,Z_iq,Z_cf)#
+	options(max.print=10000000)#
+	print("Im writing now")#
+	write.table(all[,1:18],name,sep='\t',row.names=F)#
+	return(all)#
+}
+a=MakeData(wak,1000,"mul_wake_ci.csv")
+sk=function(x,Winsiz){#
+	i=0#
+	sk=0#
+	while(i<floor(length(x)/Winsiz)){#
+		j=1#
+		sam=0#
+		while(j<=Winsiz){#
+			sam[j]=x[i*Winsiz+j]#
+			j=j+1#
+		}#
+		sk[i+1]<-sum(((sam-mean(sam))^3)/sd(sam)^3)*(1/(Winsiz-1))#
+		i=i+1#
+	}#
+	return(sk)#
+}#
+ku=function(x,Winsiz){#
+	i=0#
+	ku=0#
+	while(i<floor(length(x)/Winsiz)){#
+		j=1#
+		sam=0#
+		while(j<=Winsiz){#
+			sam[j]=x[i*Winsiz+j]#
+			j=j+1#
+		}#
+		ku[i+1]<-sum(((sam-mean(sam))^4)/sd(sam)^4)*(1/(Winsiz-1))#
+		i=i+1#
+	}#
+	return(ku)#
+}#
+rm=function(x,Winsiz){#
+	i=0#
+	rm=0#
+	while(i<floor(length(x)/Winsiz)){#
+		j=1#
+		sam=0#
+		while(j<=Winsiz){#
+			sam[j]=x[i*Winsiz+j]#
+			j=j+1#
+		}#
+		rm[i+1]<-sqrt(sum(sam^2)/Winsiz)#
+		i=i+1#
+	}#
+	return(rm)#
+}#
+p2p=function(x,Winsiz){#
+  i=0#
+  pp=0#
+  while(i<floor(length(x)/Winsiz)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i*Winsiz+j]#
+      j=j+1#
+    }#
+    pp[i+1]<-max(sam)-min(sam)#
+    i=i+1#
+  }#
+  return(pp)#
+}#
+iq=function(x,Winsiz){#
+  i=0#
+  qq=0#
+  while(i<floor(length(x)/Winsiz)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i*Winsiz+j]#
+      j=j+1#
+    }#
+    qq[i+1]<-IQR(sam)#
+    i=i+1#
+  }#
+  return(qq)#
+}#
+cf=function(x,Winsiz){#
+  i=0#
+  cc=0#
+  while(i<floor(length(x)/Winsiz)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i*Winsiz+j]#
+      j=j+1#
+    }#
+    cc[i+1]<-(max(sam)-min(sam))/(sqrt(sum(sam^2)/Winsiz))#
+    i=i+1#
+  }#
+  return(cc)#
+}#
+sk=function(x,Winsiz){#
+  i=0#
+  sk=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    sk[i+1]<-sum(((sam-mean(sam))^3)/sd(sam)^3)*(1/(Winsiz-1))#
+    i=i+1#
+  }#
+  return(sk)#
+}#
+ku=function(x,Winsiz){#
+  i=0#
+  ku=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    ku[i+1]<-sum(((sam-mean(sam))^4)/sd(sam)^4)*(1/(Winsiz-1))#
+    i=i+1#
+  }#
+  return(ku)#
+}#
+rm=function(x,Winsiz){#
+  i=0#
+  rm=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    rm[i+1]<-sqrt(sum(sam^2)/Winsiz)#
+    i=i+1#
+  }#
+  return(rm)#
+}#
+p2p=function(x,Winsiz){#
+  i=0#
+  pp=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    pp[i+1]<-max(sam)-min(sam)#
+    i=i+1#
+  }#
+  return(pp)#
+}#
+iq=function(x,Winsiz){#
+  i=0#
+  qq=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    qq[i+1]<-IQR(sam)#
+    i=i+1#
+  }#
+  return(qq)#
+}#
+cf=function(x,Winsiz){#
+  i=0#
+  cc=0#
+  while((i+Winsiz)<=length(x)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i+j]#
+      j=j+1#
+    }#
+    cc[i+1]<-(max(sam)-min(sam))/(sqrt(sum(sam^2)/Winsiz))#
+    i=i+1#
+  }#
+  return(cc)#
+}#
+MakeData=function(data,Winsiz,name){#
+	X_skew=sk(data$X,Winsiz)#
+	X_kurt=ku(data$X,Winsiz)#
+	X_rms=rm(data$X,Winsiz)#
+	X_p2p=p2p(data$X,Winsiz)#
+  	X_iq=iq(data$X,Winsiz)#
+  	X_cf=cf(data$X,Winsiz)#
+	Y_skew=sk(data$Y,Winsiz)#
+	Y_kurt=ku(data$Y,Winsiz)#
+	Y_rms=rm(data$Y,Winsiz)#
+	Y_p2p=p2p(data$Y,Winsiz)#
+	Y_iq=iq(data$Y,Winsiz)#
+ 	Y_cf=cf(data$Y,Winsiz)#
+	Z_skew=sk(data$Z,Winsiz)#
+	Z_kurt=ku(data$Z,Winsiz)#
+	Z_rms=rm(data$Z,Winsiz)#
+	Z_p2p=p2p(data$Z,Winsiz)#
+	Z_iq=iq(data$Z,Winsiz)#
+	Z_cf=cf(data$Z,Winsiz)#
+	all=cbind(X_skew,X_kurt,X_rms,X_p2p,X_iq,X_cf,Y_skew,Y_kurt,Y_rms,Y_p2p,Y_iq,Y_cf,Z_skew,Z_kurt,Z_rms,Z_p2p,Z_iq,Z_cf)#
+	options(max.print=10000000)#
+	print("Im writing now")#
+	write.table(all[,1:18],name,sep='\t',row.names=F)#
+	return(all)#
+}
+sk=function(x,Winsiz){#
+	i=0#
+	sk=0#
+	while(i<floor(length(x)/Winsiz)){#
+		j=1#
+		sam=0#
+		while(j<=Winsiz){#
+			sam[j]=x[i*Winsiz+j]#
+			j=j+1#
+		}#
+		sk[i+1]<-sum(((sam-mean(sam))^3)/sd(sam)^3)*(1/(Winsiz-1))#
+		i=i+1#
+	}#
+	return(sk)#
+}#
+ku=function(x,Winsiz){#
+	i=0#
+	ku=0#
+	while(i<floor(length(x)/Winsiz)){#
+		j=1#
+		sam=0#
+		while(j<=Winsiz){#
+			sam[j]=x[i*Winsiz+j]#
+			j=j+1#
+		}#
+		ku[i+1]<-sum(((sam-mean(sam))^4)/sd(sam)^4)*(1/(Winsiz-1))#
+		i=i+1#
+	}#
+	return(ku)#
+}#
+rm=function(x,Winsiz){#
+	i=0#
+	rm=0#
+	while(i<floor(length(x)/Winsiz)){#
+		j=1#
+		sam=0#
+		while(j<=Winsiz){#
+			sam[j]=x[i*Winsiz+j]#
+			j=j+1#
+		}#
+		rm[i+1]<-sqrt(sum(sam^2)/Winsiz)#
+		i=i+1#
+	}#
+	return(rm)#
+}#
+p2p=function(x,Winsiz){#
+  i=0#
+  pp=0#
+  while(i<floor(length(x)/Winsiz)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i*Winsiz+j]#
+      j=j+1#
+    }#
+    pp[i+1]<-max(sam)-min(sam)#
+    i=i+1#
+  }#
+  return(pp)#
+}#
+iq=function(x,Winsiz){#
+  i=0#
+  qq=0#
+  while(i<floor(length(x)/Winsiz)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i*Winsiz+j]#
+      j=j+1#
+    }#
+    qq[i+1]<-IQR(sam)#
+    i=i+1#
+  }#
+  return(qq)#
+}#
+cf=function(x,Winsiz){#
+  i=0#
+  cc=0#
+  while(i<floor(length(x)/Winsiz)){#
+    j=1#
+    sam=0#
+    while(j<=Winsiz){#
+      sam[j]=x[i*Winsiz+j]#
+      j=j+1#
+    }#
+    cc[i+1]<-(max(sam)-min(sam))/(sqrt(sum(sam^2)/Winsiz))#
+    i=i+1#
+  }#
+  return(cc)#
+}
+a=MakeData(wak,1000,"mul_wake_ci.csv")
+b=MakeData(sle,1000,"mul_sleep_ci.csv")
+c=rbind(a,"wake")
+head(a)
+head(c)
+c=cbind(a,"wake")
+head(c)
+d=cbind(b,"sleep")
+a$bool="wake"
+head(a)
+a
+head(a)
+a=MakeData(wak,1000,"mul_wake_ci.csv")
+head(a)
+head(b)
+a$bool="sleep"
+head(a)
+a=MakeData(wak,1000,"mul_wake_ci.csv")
+a[1,18]
+a[1,19]
+a[,19]="sleep"
+head(e)
+c=cbind(a,"Wake")
+head(c)
+d=cbind(b,"Wake")
+e=rbind(c,d)
+write.table(e,file="mul_learn.csv",sep=",",row.names=F,col.names=T)
+d=cbind(b,"Sleep")
+e=rbind(c,d)
+write.table(e,file="mul_learn.csv",sep=",",row.names=F,col.names=T)
