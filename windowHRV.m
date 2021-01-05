@@ -3,7 +3,7 @@ function [f, P] = windowHRV(time, ECG, SamplingRate, Winsize)
 %Window size(Min)
 SamplingTime = Winsize * 60;
 Win = fix(SamplingRate * SamplingTime);
-num = fix(length(ECG) / Win);
+num = fix(length(ECG) / Win) - 1;
 
 for N = (1:num)
     Time_Arr(:, N) = time(Win * (N - 1) + 1:Win * N);
