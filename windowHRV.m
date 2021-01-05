@@ -14,8 +14,8 @@ f = NaN(1000, num);
 P = NaN(1000, num);
 
 for N = (1:num)
-    [qr, lo, y(N, :)] = rr_interval(Time_Arr(:, N), ECG_Arr(:, N));
-    [ti, HRV] = MakeHRV(lo);
+    [~, lo, ~] = rrInterval(Time_Arr(:, N), ECG_Arr(:, N));
+    [~, HRV] = makeHRV(lo);
     [fr, P1] = freqHRV1(HRV, length(HRV), SamplingTime);
     f(1:length(fr), N) = fr;
     P(1:length(P1), N) = P1;
