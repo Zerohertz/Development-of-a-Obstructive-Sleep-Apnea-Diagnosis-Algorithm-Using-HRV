@@ -1,0 +1,8 @@
+c02erm 5 100 3007000
+c02erm.mat 16+24 200/mV 12 0 -7 32086 0 ECG
+c02erm.mat 16+24 20000/mV 16 0 13052 -3265 0 Resp C
+c02erm.mat 16+24 20000/mV 16 0 12847 10659 0 Resp A
+c02erm.mat 16+24 20000/mV 16 0 -780 -31404 0 Resp N
+c02erm.mat 16+24 1/mV 16 0 0 -5872 0 SpO2
+#Creator: wfdb2mat
+#Source: record c02er
