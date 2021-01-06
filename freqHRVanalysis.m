@@ -23,4 +23,4 @@ for num = (1:length(freq))
     LF = mean(LF_amp);
     HF = mean(HF_amp);    
 end
-
+end
