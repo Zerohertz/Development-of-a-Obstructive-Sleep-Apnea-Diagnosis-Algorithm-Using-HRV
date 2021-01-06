@@ -1,0 +1,4 @@
+a02m 1 100 3182000
+a02m.mat 16+24 200/mV 12 0 -4 28438 0 ECG
+#Creator: wfdb2mat
+#Source: record a02

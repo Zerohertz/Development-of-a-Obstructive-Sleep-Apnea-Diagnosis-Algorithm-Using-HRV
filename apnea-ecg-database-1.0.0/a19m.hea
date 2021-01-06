@@ -1,0 +1,4 @@
+a19m 1 100 3012000
+a19m.mat 16+24 200/mV 12 0 -19 -14243 0 ECG
+#Creator: wfdb2mat
+#Source: record a19
