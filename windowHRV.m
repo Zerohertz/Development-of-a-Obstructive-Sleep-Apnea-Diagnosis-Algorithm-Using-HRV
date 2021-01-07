@@ -5,9 +5,9 @@ SamplingTime = Winsize * 60;
 Win = fix(SamplingRate * SamplingTime);
 num = fix(length(ECG) / Win) - 10;
 
-[~,ll,~]=rrInterval(time, ECG);
-[~,bb]=makeHRV(ll);
-freqHRVplot(bb, length(bb), length(bb) / 100);
+% [~,ll,~]=rrInterval(time, ECG);
+% [~,bb]=makeHRV(ll);
+% freqHRVplot(bb, length(bb), length(bb) / 100);
 
 for N = (1:num)
     Time_Arr(:, N) = time(Win * (N - 1) + 1:Win * N);
