@@ -1,0 +1,4 @@
+a09m 1 100 2988000
+a09m.mat 16+24 200/mV 12 0 6 -32481 0 ECG
+#Creator: wfdb2mat
+#Source: record a09

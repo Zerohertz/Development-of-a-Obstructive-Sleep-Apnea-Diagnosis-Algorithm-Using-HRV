@@ -1,0 +1,4 @@
+a07m 1 100 3060500
+a07m.mat 16+24 200/mV 12 0 -34 -2618 0 ECG
+#Creator: wfdb2mat
+#Source: record a07
