@@ -6,8 +6,8 @@ if DataType == 1
     [tm, data] = rdmat(append(paramName, 'm'));
     [tmApn, apn] = rdann(paramName, 'apn');
     ecg = data;
-    tm = tm(tmApn(1):tmApn(length(tmApn)) + 5999);
-    ecg = ecg(tmApn(1):tmApn(length(tmApn)) + 5999);
+    tm = tm(1:tmApn(length(tmApn)));
+    ecg = ecg(1:tmApn(length(tmApn)));
         
 elseif DataType == 2
     cd MIT %250Hz
