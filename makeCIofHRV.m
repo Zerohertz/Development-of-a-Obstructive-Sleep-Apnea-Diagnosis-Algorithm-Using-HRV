@@ -1,4 +1,4 @@
-function [out] = makeCIofHRV(DataType, paramName)
+function [out] = makeCIofHRV(DataType, paramName, par)
 if DataType == 1
     cd AEDB %100Hz
     cd apnea-ecg-database-1.0.0/
@@ -21,7 +21,7 @@ end
 cd ..
 cd ..
 
-[qr, lo, y] = rrInterval(tm, ecg);
+[qr, lo, y] = rrIntervalparam(tm, ecg, par);
 [time, hrv] = makeHRV(lo);
 
 if DataType == 1
