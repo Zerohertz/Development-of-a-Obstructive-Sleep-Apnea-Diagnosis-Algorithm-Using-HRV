@@ -1,0 +1,11 @@
+slp41m 7 250/0.033333333(1) 5850000 23:51:30 24/08/1989
+slp41m.mat 16+24 -500/mV 12 0 73 -27284 0 ECG
+slp41m.mat 16+24 8.03448(-1018)/mmHg 12 0 -206 -29721 0 BP
+slp41m.mat 16+24 -25680/mV 12 0 463 29443 0 EEG (C4-A1)
+slp41m.mat 16+24 -1820/l 12 0 58 2403 0 Resp (nasal)
+slp41m.mat 16+24 -1213/l 12 0 -28 14465 0 Resp (abdominal)
+slp41m.mat 16+24 -2860/mV 12 0 219 -8406 0 EOG (right)
+slp41m.mat 16+24 -23720/mV 12 0 -1358 -23759 0 EMG
+# 45 M 145 48-08-89
+#Creator: wfdb2mat
+#Source: record slp41  Start: [23:51:30.000 24/08/1989]

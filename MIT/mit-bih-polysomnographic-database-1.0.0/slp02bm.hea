@@ -1,0 +1,8 @@
+slp02bm 4 250/0.033333333(597) 2025000  3:59:30 01/02/1989
+slp02bm.mat 16+24 -500/mV 12 0 -109 -24148 0 ECG
+slp02bm.mat 16+24 5.06061(-513)/mmHg 12 0 165 8708 0 BP
+slp02bm.mat 16+24 -8300/mV 12 0 116 -9195 0 EEG (O2-A1)
+slp02bm.mat 16+24 -124/l 12 0 70 10811 0 Resp (nasal)
+# 38 M 145 05-02-89
+#Creator: wfdb2mat
+#Source: record slp02b  Start: [03:59:30.000 01/02/1989]

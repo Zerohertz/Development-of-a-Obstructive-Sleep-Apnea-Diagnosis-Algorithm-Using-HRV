@@ -16,6 +16,8 @@ elseif DataType == 2
     [tm, data] = rdmat(append(paramName, 'm'));
     [tmApn, ~, ~, ~, ~, apn] = rdann(paramName, 'st');
     ecg = data(:,1);
+    tm = tm(tmApn(1):tmApn(length(tmApn)));
+    ecg = ecg(tmApn(1):tmApn(length(tmApn)));
 end
 
 cd ..

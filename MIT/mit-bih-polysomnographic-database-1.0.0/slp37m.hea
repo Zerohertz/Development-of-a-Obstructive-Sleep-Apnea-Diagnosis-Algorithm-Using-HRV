@@ -1,0 +1,12 @@
+slp37m 7 250/0.033333333(18) 5250000     8:30 10/08/1989
+slp37m.mat 16+24 -1585/mV 12 0 119 -32077 0 ECG
+slp37m.mat 16+24 10(-400)/mmHg 12 0 529 -23724 0 BP
+slp37m.mat 16+24 -17343.2/mV 12 0 -95 22574 0 EEG (C4-A1)
+slp37m.mat 16+24 -1668/l 12 0 75 13776 0 Resp (nasal)
+slp37m.mat 16+24 -2116/l 12 0 140 24071 0 Resp (abdominal)
+slp37m.mat 16+24 -2023.36/mV 12 0 -38 -6898 0 EOG (right)
+slp37m.mat 16+24 -28923.6/mV 12 0 -165 4792 0 EMG
+# 39 M 125 22-08-89
+# BP gain and baseline are guesses; previous values of 5.69(344) were wrong
+#Creator: wfdb2mat
+#Source: record slp37  Start: [00:08:30.000 10/08/1989]
