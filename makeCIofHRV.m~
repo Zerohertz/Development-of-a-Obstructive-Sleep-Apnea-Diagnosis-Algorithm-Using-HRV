@@ -50,24 +50,18 @@ for N = 1:Win(length(Win))
     sdnn(N) = HRV.SDNN(seqHRV);
     sdone(N) = sqrt(1/2 * sdsd(N) ^ 2);
     sdtwo(N) = sqrt(2 * sdnn(N) ^ 2 - 1 / 2 * sdsd(N) ^ 2);
-    ratio(N) = sdone(N) / sdtwo(N);
-    s(N) = pi * sdone(N) * sdtwo(N);
+    ratio = sdone(N) / sdtwo(N);
+    s = pi * sdone * sdtwo(N
 end
 
 for N = 1:locat(length(locat))
-    Min(N) = (N - 1) * win;
+    lab(N) = apn(N);
     VLF(N) = v(fix((N - 1) / mul + 1));
     LF(N) = l(fix((N - 1) / mul + 1));
     HF(N) = h(fix((N - 1) / mul + 1));
-    SDSD(N) = sdsd(fix((N - 1) / mul + 1));
-    SDNN(N) = sdnn(fix((N - 1) / mul + 1));
-    SDone(N) = sdone(fix((N - 1) / mul + 1));
-    SDtwo(N) = sdtwo(fix((N - 1) / mul + 1));
-    Ratio(N) = ratio(fix((N - 1) / mul + 1));
-    S(N) = s(fix((N - 1) / mul + 1));
-    lab(N) = apn(N);
+    Min(N) = (N - 1) * win;
 end
 
-out = table(Min', VLF', LF', HF', SDSD', SDNN', SDone', SDtwo', Ratio', S', lab', 'VariableNames',{'time' 'VLF' 'LF', 'HF', 'SDSD', 'SDNN', 'SDone', 'SDtwo', 'Ratio', 'S', 'Label'});
+out = table(Min', VLF', LF', HF', lab', 'VariableNames',{'time' 'VLF' 'LF', 'HF', 'Label'});
 end
 
