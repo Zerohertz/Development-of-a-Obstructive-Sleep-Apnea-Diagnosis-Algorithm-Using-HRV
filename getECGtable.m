@@ -19,8 +19,8 @@ elseif DataType == 2
     [tm, data] = rdmat(append(paramName, 'm'));
     [tmApn, ~, ~, ~, ~, apn] = rdann(paramName, 'st');
     ecg = data(:,1);
-    tm = tm(tmApn(1):tmApn(length(tmApn)));
-    ecg = ecg(tmApn(1):tmApn(length(tmApn)));
+    tm = tm(tmApn(1):tmApn(length(tmApn)) + 7499);
+    ecg = ecg(tmApn(1):tmApn(length(tmApn)) + 7499);
     for N = 1:length(ecg)
         lab(N) = apn(fix((N - 1) / 7500 + 1));
     end
