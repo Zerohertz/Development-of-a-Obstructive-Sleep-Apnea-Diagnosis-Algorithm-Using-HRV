@@ -44,10 +44,11 @@ Win = fix(Win);
 for N = 1:Win(length(Win))
     seqHRV = hrv(find(Win == N));
     [f, p] = freqHRV(seqHRV);
-    [vlf, lf, hf] = freqHRVanalysis(f, p);
+    [vlf, lf, hf, tp] = freqHRVanalysis(f, p);
     v(N) = vlf;
     l(N) = lf;
     h(N) = hf;
+    t(N) = tp;
     sdsd(N) = HRV.SDSD(seqHRV);
     sdnn(N) = HRV.SDNN(seqHRV);
     sdone(N) = sqrt(1/2 * sdsd(N) ^ 2);
@@ -61,6 +62,7 @@ for N = 1:locat(length(locat))
     VLF(N) = v(fix((N - 1) / mul + 1));
     LF(N) = l(fix((N - 1) / mul + 1));
     HF(N) = h(fix((N - 1) / mul + 1));
+    TP(N) = t(fix((N - 1) / mul + 1));
     SDSD(N) = sdsd(fix((N - 1) / mul + 1));
     SDNN(N) = sdnn(fix((N - 1) / mul + 1));
     SDone(N) = sdone(fix((N - 1) / mul + 1));
@@ -70,6 +72,6 @@ for N = 1:locat(length(locat))
     lab(N) = apn(N);
 end
 
-out = table(Min', VLF', LF', HF', SDSD', SDNN', SDone', SDtwo', Ratio', S', lab', 'VariableNames',{'time' 'VLF' 'LF', 'HF', 'SDSD', 'SDNN', 'SDone', 'SDtwo', 'Ratio', 'S', 'Label'});
+out = table(Min', VLF', LF', HF', TP', SDSD', SDNN', SDone', SDtwo', Ratio', S', lab', 'VariableNames',{'time' 'VLF' 'LF', 'HF', 'TP', 'SDSD', 'SDNN', 'SDone', 'SDtwo', 'Ratio', 'S', 'Label'});
 end
 

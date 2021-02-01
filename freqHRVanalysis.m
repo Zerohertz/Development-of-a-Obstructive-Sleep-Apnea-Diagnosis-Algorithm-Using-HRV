@@ -1,4 +1,4 @@
-function [VLF, LF, HF] = freqHRVanalysis(freq, amp)
+function [VLF, LF, HF, TP] = freqHRVanalysis(freq, amp)
 i = 1;
 j = 1;
 k = 1;
@@ -23,4 +23,5 @@ end
 VLF = mean(VLF_amp);
 LF = mean(LF_amp);
 HF = mean(HF_amp); 
+TP = VLF + LF + HF;
 end
