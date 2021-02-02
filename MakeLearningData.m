@@ -57,3 +57,24 @@ slp60 = makeCIofHRV(2, 'slp60', 0.1);
 slp61 = makeCIofHRV(2, 'slp61', 0.1);
 slp66 = makeCIofHRV(2, 'slp66', 0.1);
 %slp67x = makeCIofHRV(2, 'slp67x', 0.1);
+
+
+
+slp01a = getECGcell(2, 'slp01a');
+slp01b = getECGcell(2, 'slp01b');
+slp02a = getECGcell(2, 'slp02a');
+slp02b = getECGcell(2, 'slp02b');
+slp03 = getECGcell(2, 'slp03');
+slp04 = getECGcell(2, 'slp04');
+slp14 = getECGcell(2, 'slp14');
+slp16 = getECGcell(2, 'slp16');
+slp32 = getECGcell(2, 'slp32');
+slp37 = getECGcell(2, 'slp37');
+slp41 = getECGcell(2, 'slp41');
+slp45 = getECGcell(2, 'slp45');
+slp48 = getECGcell(2, 'slp48');
+slp59 = getECGcell(2, 'slp59');
+slp60 = getECGcell(2, 'slp60');
+slp61 = getECGcell(2, 'slp61');
+slp66 = getECGcell(2, 'slp66');
+slp67x = getECGcell(2, 'slp67x');
