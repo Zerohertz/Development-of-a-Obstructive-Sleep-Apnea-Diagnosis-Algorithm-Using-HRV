@@ -32,12 +32,16 @@ Win = fix(Win);
 for N = 1:Win(length(Win))
     tab(N).time = tm(find(Win == N))';
     tab(N).ECG = ecg(find(Win == N));
-    tab(N).lab = apn(N);
+    if contains(apn(N), 'H') | contains(apn(N), 'HA') | contains(apn(N), 'OA') | contains(apn(N), 'X') | contains(apn(N), 'CA')
+        tab(N).lab = "Apnea";
+    elseif contains(apn(N), 'W')
+        tab(N).lab = "Wake";
+    else
+        tab(N).lab = "Sleep";
+    end
 end
 
 cd ..
 cd ..
-
-%out = table(tm', ecg, lab', 'VariableNames',{'time' 'ecg' 'Label'});
 end
 

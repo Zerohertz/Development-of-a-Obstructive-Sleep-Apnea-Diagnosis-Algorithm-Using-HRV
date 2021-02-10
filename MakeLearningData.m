@@ -78,3 +78,27 @@ slp60 = getECGcell(2, 'slp60');
 slp61 = getECGcell(2, 'slp61');
 slp66 = getECGcell(2, 'slp66');
 slp67x = getECGcell(2, 'slp67x');
+
+
+
+
+
+
+makeIMGdata(slp01a, 'slp01a');
+makeIMGdata(slp01b, 'slp01b');
+makeIMGdata(slp02a, 'slp02a');
+makeIMGdata(slp02b, 'slp02b');
+makeIMGdata(slp03, 'slp03');
+makeIMGdata(slp04, 'slp04');
+makeIMGdata(slp14, 'slp14');
+makeIMGdata(slp16, 'slp16');
+makeIMGdata(slp32, 'slp32');
+makeIMGdata(slp37, 'slp37');
+makeIMGdata(slp41, 'slp41');
+makeIMGdata(slp45, 'slp45');
+makeIMGdata(slp48, 'slp48');
+makeIMGdata(slp59, 'slp59');
+makeIMGdata(slp60, 'slp60');
+makeIMGdata(slp61, 'slp61');
+makeIMGdata(slp66, 'slp66');
+makeIMGdata(slp67x, 'slp67x');
