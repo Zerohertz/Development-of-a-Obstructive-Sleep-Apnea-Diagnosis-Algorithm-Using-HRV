@@ -1,4 +1,9 @@
 function makeIMGdata(tmp, name)
+mkdir(name)
+cd(name)
+mkdir Wake
+mkdir Sleep
+mkdir Apnea
 for i = 1:length(tmp)
     grymat = Sig2Gry(tmp(i).ECG);
     if tmp(i).lab == "Wake"
@@ -17,5 +22,6 @@ for i = 1:length(tmp)
         disp("Error")
     end
 end
+cd ..
 end
 

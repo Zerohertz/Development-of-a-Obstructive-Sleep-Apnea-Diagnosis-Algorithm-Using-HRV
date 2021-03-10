@@ -83,7 +83,6 @@ slp67x = getECGcell(2, 'slp67x');
 
 
 
-
 makeIMGdata(slp01a, 'slp01a');
 makeIMGdata(slp01b, 'slp01b');
 makeIMGdata(slp02a, 'slp02a');
